@@ -1,6 +1,6 @@
 # chatbot_langgraph
 
-### Features
+## Features
 
 - FastAPI HTTP API (/health, /chat)
 
@@ -50,7 +50,7 @@ Langsmith API key (https://smith.langchain.com/)
 
 ```
 
-### Setup
+## Setup
 
 ### 1. Create & activate a venv
 
@@ -81,7 +81,7 @@ python -m uvicorn src.main:app --reload
 
 Visit: http://127.0.0.1:8000/
 
-### Acknowledgements
+## Acknowledgements
 
 - FastAPI
 
@@ -91,6 +91,6 @@ Visit: http://127.0.0.1:8000/
 
 ## Author
 
-Prashanth Gowda A S
+Prashanth Gowda
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/prashanthgowdaas/)
