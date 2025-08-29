@@ -17,7 +17,11 @@ async def chat_endpoint(request: ChatRequest):
         sid = request.session_id or str(uuid.uuid4())
         result = graph.invoke(
             {"messages": [{"role": "user", "content": request.message}]},
-            config={"configurable": {"thread_id": sid}},   # <-- important
+            config={
+        "configurable": {"thread_id": sid},
+        "tags": ["fastapi", "langgraph", "prod"],
+        "metadata": {"endpoint": "POST /chat", "session": sid, "app": "chatbot"},
+    },   # <-- important
         )
         last = result["messages"][-1]
         reply = getattr(last, "content", last.get("content") if isinstance(last, dict) else str(last))

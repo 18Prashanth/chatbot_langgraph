@@ -1,17 +1,17 @@
 from typing import Annotated
 from typing_extensions import TypedDict
-from langgraph.graph import StateGraph, START, END
+from langgraph.graph import StateGraph, START
 from langgraph.graph.message import add_messages
 import os, json
 from dotenv import load_dotenv
 
 from langchain.chat_models import init_chat_model
 from langchain_core.tools import tool
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import SystemMessage
 from langgraph.prebuilt import ToolNode, tools_condition
 from tavily import TavilyClient
 from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.types import Command, interrupt
+from langsmith import traceable
 
 load_dotenv()
 
@@ -19,6 +19,7 @@ class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 @tool
+@traceable(name="web_search_tool")
 def web_search(query: str) -> str:
     """Search the web for information. Use this for current events, news, recent data, or when you need up-to-date information."""
     print(f"SEARCHING: {query}")
@@ -33,6 +34,7 @@ tools = [web_search]
 llm = init_chat_model("google_genai:gemini-2.0-flash")
 llm_with_tools = llm.bind_tools(tools)
 
+@traceable(name="chatbot_node")
 def chatbot(state: State):
     # Force the LLM to be more likely to use tools
     system_prompt = """You are an assistant that ALWAYS uses web search for:
