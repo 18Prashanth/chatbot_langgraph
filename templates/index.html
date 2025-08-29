@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>AI Chatbot</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">
+        <h1>AI Assistant</h1>
+        <div class="status">
+          <div class="status-dot"></div>
+          <span>Online</span>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <div class="avatar bot">AI</div>
+          <div class="message-content">
+            Hello! I'm your AI assistant. How can I help you today?
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <div class="input-container">
+          <input
+            type="text"
+            class="message-input"
+            id="messageInput"
+            placeholder="Type your message..."
+            maxlength="500"
+          />
+          <button class="send-button" id="sendButton">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m22 2-7 20-4-9-9-4 20-7z" />
+            </svg>
+          </button>
+        </div>
+        <div class="quick-actions">
+          <div
+            class="quick-action"
+            onclick="sendQuickMessage('Help me with...')"
+          >
+            Help me with...
+          </div>
+          <div class="quick-action" onclick="sendQuickMessage('Explain')">
+            Explain
+          </div>
+          <div class="quick-action" onclick="sendQuickMessage('What is...')">
+            What is...
+          </div>
+          <div class="quick-action" onclick="sendQuickMessage('How do I...')">
+            How do I...
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../static/script.js"></script>
+  </body>
+</html>
